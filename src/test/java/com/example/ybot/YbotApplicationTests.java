@@ -1,10 +1,10 @@
-package com.example.ybap;
+package com.example.ybot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class YbapApplicationTests {
+class YbotApplicationTests {
 
 	@Test
 	void contextLoads() {
