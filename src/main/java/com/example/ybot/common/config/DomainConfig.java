@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "domain")
 public class DomainConfig {
+    public static final String NOTION_VERSION = "Notion-Version";
+
     private Notion notion;
 
     @Getter
@@ -18,9 +20,18 @@ public class DomainConfig {
         private String url;
         private String secretKey;
         private String databaseId;
+        private String version;
     }
 
     public String getDataBaseQueryUrl() {
         return this.notion.url + "/databases/" + this.notion.databaseId + "/query";
+    }
+
+    public String getNotionKey() {
+        return this.notion.secretKey;
+    }
+
+    public String getNotionVersion() {
+        return this.notion.version;
     }
 }
