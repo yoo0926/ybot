@@ -7,7 +7,7 @@ spring:
       path: /h2-console
   datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:~/test-db;MODE=MYSQL
+    url: jdbc:h2:mem:test-db;MODE=MYSQL
     username: sa
     password:
   jpa:

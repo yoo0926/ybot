@@ -12,11 +12,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -65,18 +67,28 @@ public class NotionService {
                 .build();
     }
 
-    public DoorayRsDto getRandom() {
+    public DoorayRsDto getRandom(String doorayText) {
         long seed = System.currentTimeMillis();
         Random random = new Random(seed);
 
         List<Notion> notionList = convertNotionList(getAll());
+
+        if(StringUtils.hasText(doorayText)) {
+            notionList = notionList.stream()
+                    .filter(item -> doorayText.equals(item.getCategory()))
+                    .collect(Collectors.toList());
+        }
+
         int index = random.nextInt(notionList.size());
 
         log.info("notionList size {}, index {}", notionList.size(), index);
 
+        String prefix = StringUtils.hasText(doorayText) ?
+                "`" + doorayText + "` " : "";
+
         Notion notion = notionList.get(index);
         return DoorayRsDto.builder()
-                .text("[" + notion.getTitle() + "] " + notion.getDescription())
+                .text(prefix + "[" + notion.getTitle() + "] " + notion.getDescription())
                 .build();
     }
 

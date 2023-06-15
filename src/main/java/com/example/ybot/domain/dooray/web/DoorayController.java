@@ -40,7 +40,7 @@ public class DoorayController {
     @PostMapping(value = {"lunch", "점심"})
     public ResponseEntity<DoorayRsDto> getRecommendLunch(@RequestBody DoorayRqDto rqDto) {
         log.info("rqDto : {}", rqDto.toString());
-        DoorayRsDto rsDto = notionService.getRandom();
+        DoorayRsDto rsDto = notionService.getRandom(rqDto.getText());
 
         return new ResponseEntity<>(rsDto, HttpStatus.OK);
     }
