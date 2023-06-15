@@ -32,8 +32,16 @@ public class DoorayController {
 
     @GetMapping("/notion/all")
     public ResponseEntity<NotionRsDto> getNotionAll() {
-        NotionRsDto result = notionService.getDataBase();
+        NotionRsDto result = notionService.getAll();
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PostMapping(value = {"lunch", "점심"})
+    public ResponseEntity<DoorayRsDto> getRecommendLunch(@RequestBody DoorayRqDto rqDto) {
+        log.info("rqDto : {}", rqDto.toString());
+        DoorayRsDto rsDto = notionService.getRandom();
+
+        return new ResponseEntity<>(rsDto, HttpStatus.OK);
     }
 }

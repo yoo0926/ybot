@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 public class NotionRsDto {
     private String object;
-    private ArrayList<Result> results;
+    private List<Result> results;
     private String next_cursor;
     private boolean has_more;
     private String type;
@@ -31,7 +31,7 @@ public class NotionRsDto {
 
     @Getter
     @Setter
-    public static class Category{
+    public static class CategoryType{
         private String id;
         private String type;
         private Select select;
@@ -62,10 +62,32 @@ public class NotionRsDto {
     @Setter
     public static class Properties{
         @JsonProperty("분류")
-        private Category category;
+        private CategoryType category;
         @JsonProperty("이름")
-        private Title name;
+        private TitleType name;
+        @JsonProperty("메모")
+        private RichTextType richTextType;
     }
+
+    @Getter
+    @Setter
+    public static class RichTextType {
+        private String id;
+        private String type;
+        @JsonProperty("rich_text")
+        private List<RichText> richText;
+    }
+
+    @Getter
+    @Setter
+    public static class RichText{
+        public String type;
+        public Text text;
+        public Annotations annotations;
+        public String plain_text;
+        public Object href;
+    }
+
 
     @Getter
     @Setter
@@ -102,10 +124,16 @@ public class NotionRsDto {
 
     @Getter
     @Setter
-    public static class Title{
+    public static class TitleType {
         private String id;
         private String type;
-        private ArrayList<Title> title;
+        private List<Title> title;
+    }
+
+    @Getter
+    @Setter
+    public static class Title{
+        private String type;
         private Text text;
         private Annotations annotations;
         private String plain_text;

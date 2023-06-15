@@ -33,6 +33,7 @@ public class NotionRepositoryTest {
             sampleList.add(Notion.builder()
                     .title("title_" + i)
                     .category("category_" + i)
+                    .description("description_" + i)
                     .build());
         }
 

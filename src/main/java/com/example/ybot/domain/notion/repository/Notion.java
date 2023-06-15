@@ -17,16 +17,20 @@ public class Notion {
     private String title;
     @Column(nullable = false)
     private String category;
+    @Column
+    private String description;
 
     @Builder
-    public Notion(Long seq, String title, String category) {
+    public Notion(Long seq, String title, String category, String description) {
         this.seq = seq;
         this.title = title;
         this.category = category;
+        this.description = description;
     }
 
-    public void update(String title, String category) {
+    public void update(String title, String category, String description) {
         this.title = title;
         this.category = category;
+        this.description = description;
     }
 }
