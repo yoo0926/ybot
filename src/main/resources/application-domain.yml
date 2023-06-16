@@ -1,0 +1,6 @@
+domain:
+  notion:
+    url: ${DOMAIN_NOTION_URL}
+    secret-key: ${DOMAIN_NOTION_SECRETKEY}
+    database-id: ${DOMAIN_NOTION_DATABASEID}
+    version: ${DOMAIN_NOTION_VERSION}

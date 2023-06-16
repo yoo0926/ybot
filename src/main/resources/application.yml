@@ -1,6 +1,8 @@
 server:
   port: 8088
 spring:
+  profiles:
+    include: domain
   h2:
     console:
       enabled: true
